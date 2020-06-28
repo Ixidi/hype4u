@@ -1,0 +1,23 @@
+gui:
+  selectGroup:
+    title: "&lWybierz grupe"
+  panel:
+    groupsManagement: "&c&lZarzadzanie grupami"
+message:
+  playerOffline: "&cGracza &7{name} &cnie ma na serwerze."
+  permission: "&cNie masz uprawnien."
+  groupsDisplay: "&6Grupy dostepne na serwerze: {groups}"
+  groupPermissionsDisplay: "&6Uprawnienia grupy &7{group}&6: {permissions}"
+  groupNotExist: "&cGrupa &7{group} &cnie istnieje."
+  groupExists: "&cGrupa &7{group} &cjuz istnieje."
+  groupCreated: "&aGrupa &7{group} &azostala stworzona."
+  command:
+    cannotExecute: "&cNie mozesz wykonac komendy z tego poziomu."
+    usage: "&cPoprawne uzycie: &7{args}&c."
+    argumentHandlerError: |-
+      &cBlad w uzyciu &7{execution}
+      &c{error}
+    errorDouble: "&cPodana wartosc musi byc liczba rzeczywista."
+    errorPositiveDouble: "&cPodana wartosc musi byc dodatnia liczba rzeczywista."
+    errorInteger: "&cPodana wartosc musi byc liczba calkowita."
+    errorPositiveInteger: "&cPodana wartosc musi byc dodatnia liczba calkowita."
