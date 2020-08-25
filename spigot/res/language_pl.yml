@@ -1,0 +1,14 @@
+message:
+  playerOffline: "&cGracza &7{name} &cnie ma na serwerze."
+  command:
+    noPermission: "&cNie masz uprawnień do wykonania tej komendy."
+    senderLevel: "&cNie możesz wykonać tej komendy z tego poziomu."
+    missingParameter: |-
+      &cBłąd przy użyciu komendy {error}
+      &cBrakuje parametru &7{name} ({desc})&c.
+    unknownError: "&cWystąpił nieoczekiwany błąd podczas wykonywania komendy. {error}"
+    kick:
+      bypass: "&cNie możesz wyrzucić tego gracza."
+      screen: "&cZostałeś wyrzucony z serwera."
+      screenReason: "&cZostałeś wyrzucony z serwera. Powód: &7{reason}&c."
+      broadcast: "&cGracz &7{target} &czostał wyrzocony z serwera."

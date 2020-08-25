@@ -1,5 +1,0 @@
-name: H4U-Core
-author: Ixidi
-version: 1.0
-main: xyz.ixidi.hype4u.core.plugin.HypeCorePlugin
-api-version: 1.15
