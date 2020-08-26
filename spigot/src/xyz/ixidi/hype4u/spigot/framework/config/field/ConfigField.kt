@@ -1,35 +1,42 @@
 package xyz.ixidi.hype4u.spigot.framework.config.field
 
 import org.bukkit.configuration.ConfigurationSection
-import xyz.ixidi.hype4u.spigot.framework.config.field.reader.FieldReader
+import xyz.ixidi.hype4u.spigot.framework.config.field.io.FieldIO
 import kotlin.reflect.KProperty
 
-class ConfigField<T, V>(
-    private val Reader: FieldReader<T>,
+class ConfigField<T>(
+    private val io: FieldIO<T>,
     private val key: String,
-    private val default: T,
-    private val transform: (T) -> V
+    private val default: T
 ) {
 
-    private var value: V? = null
+    private var value: T? = null
 
-    operator fun getValue(thisRef: Any?, property: KProperty<*>): V {
+    operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
         return value ?: throw Exception("Config has not been loaded.")
+    }
+
+    operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
+        this.value = value
     }
 
     /**
      * Returns if default value has been set.
      */
-    fun load(config: ConfigurationSection): Boolean {
-        val v = Reader.run { config.load(key) }
+    fun load(config: ConfigurationSection) {
+        val v = io.run { config.load(key) }
 
         if (v == null) {
-            value = transform(default)
-            return true
+            value = default
+            return
         }
 
-        value = transform(v)
-        return false
+        value = v
+        return
+    }
+
+    fun save(config: ConfigurationSection) {
+        io.run { save(config) }
     }
 
 }

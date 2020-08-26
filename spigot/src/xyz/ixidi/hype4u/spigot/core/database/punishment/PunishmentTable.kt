@@ -1,4 +1,4 @@
-package xyz.ixidi.hype4u.spigot.database.punishment
+package xyz.ixidi.hype4u.spigot.core.database.punishment
 
 import org.jetbrains.exposed.dao.id.IntIdTable
 import xyz.ixidi.hype4u.spigot.core.punishment.PunishmentType

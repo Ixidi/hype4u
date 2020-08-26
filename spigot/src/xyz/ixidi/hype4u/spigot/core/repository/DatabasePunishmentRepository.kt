@@ -2,13 +2,12 @@ package xyz.ixidi.hype4u.spigot.core.repository
 
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.and
-import org.jetbrains.exposed.sql.or
 import org.jetbrains.exposed.sql.transactions.transaction
 import xyz.ixidi.hype4u.spigot.core.punishment.Punishment
 import xyz.ixidi.hype4u.spigot.core.punishment.PunishmentType
-import xyz.ixidi.hype4u.spigot.database.punishment.PunishmentEntity
-import xyz.ixidi.hype4u.spigot.database.punishment.PunishmentEntityMapper
-import xyz.ixidi.hype4u.spigot.database.punishment.PunishmentTable
+import xyz.ixidi.hype4u.spigot.core.database.punishment.PunishmentEntity
+import xyz.ixidi.hype4u.spigot.core.database.punishment.PunishmentEntityMapper
+import xyz.ixidi.hype4u.spigot.core.database.punishment.PunishmentTable
 import xyz.ixidi.hype4u.spigot.framework.util.map
 import java.util.*
 
@@ -33,12 +32,30 @@ class DatabasePunishmentRepository(
         PunishmentEntity.find { PunishmentTable.executorUUID eq executor }.map { it.map(PunishmentEntityMapper) }
     }
 
+    override fun getPunishmentsByTarget(target: String): List<Punishment> {
+        TODO("Not yet implemented")
+    }
+
+    override fun getActivePunishmentsByTarget(target: String): List<Punishment> {
+        TODO("Not yet implemented")
+    }
+
+    override fun getPunishmentsByExecutor(executor: String): List<Punishment> {
+        TODO("Not yet implemented")
+    }
+
+    override fun inactivePunishments(vararg type: PunishmentType) {
+        transaction(database) {
+            PunishmentEntity.find {
+                PunishmentTable.active.eq(true) and PunishmentTable.type.inList(type.toList())
+            }.forEach { it.active = false }
+        }
+    }
+
     override fun savePunishment(punishment: Punishment) {
         transaction(database) {
-            if ((punishment.type == PunishmentType.PERMANENT_BAN || punishment.type == PunishmentType.TEMPORARY_BAN) && punishment.active) {
-                PunishmentEntity.find {
-                    PunishmentTable.active.eq(true) and PunishmentTable.type.inList(listOf(PunishmentType.PERMANENT_BAN, PunishmentType.TEMPORARY_BAN))
-                }.forEach { it.active = false }
+            if (punishment.type == PunishmentType.PERMANENT_BAN && punishment.type == PunishmentType.TEMPORARY_BAN) {
+                inactivePunishments(PunishmentType.PERMANENT_BAN, PunishmentType.TEMPORARY_BAN)
             }
             PunishmentEntity.new {
                 active = punishment.active

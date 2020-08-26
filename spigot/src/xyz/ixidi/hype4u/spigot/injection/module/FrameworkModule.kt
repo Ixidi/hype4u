@@ -15,6 +15,8 @@ import xyz.ixidi.hype4u.spigot.framework.language.TranslationManagerImpl
 import xyz.ixidi.hype4u.spigot.framework.message.Messages
 import xyz.ixidi.hype4u.spigot.framework.message.MessagesImpl
 import xyz.ixidi.hype4u.spigot.framework.repository.PluginRepositoryImpl
+import xyz.ixidi.hype4u.spigot.framework.task.TaskManager
+import xyz.ixidi.hype4u.spigot.framework.task.TaskManagerImpl
 
 fun frameworkModule(plugin: Plugin) = module {
 
@@ -29,5 +31,7 @@ fun frameworkModule(plugin: Plugin) = module {
 
     single<TranslationManager> { TranslationManagerImpl(get()).apply { load(get<PluginConfig>().language) } }
     single<Messages> { MessagesImpl(get()) }
+
+    single<TaskManager> { TaskManagerImpl(get()) }
 
 }

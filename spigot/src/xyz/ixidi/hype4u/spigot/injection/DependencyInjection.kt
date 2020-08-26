@@ -14,7 +14,9 @@ internal object DependencyInjection : KoinComponent {
     private fun koinModules(plugin: Plugin) = arrayListOf(
         frameworkModule(plugin),
         configModule,
-        commandModule
+        commandModule,
+        databaseModule,
+        coreModule
     )
 
     fun start(plugin: JavaPlugin) {

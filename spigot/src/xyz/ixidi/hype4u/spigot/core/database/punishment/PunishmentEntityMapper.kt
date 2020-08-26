@@ -1,4 +1,4 @@
-package xyz.ixidi.hype4u.spigot.database.punishment
+package xyz.ixidi.hype4u.spigot.core.database.punishment
 
 import xyz.ixidi.hype4u.spigot.core.punishment.*
 import xyz.ixidi.hype4u.spigot.framework.util.Mapper

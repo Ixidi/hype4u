@@ -11,10 +11,12 @@ class PluginConfig(
     pluginRepository.getLocalResourceFile("config.yml") ?: throw Exception("Plugin does not contain config.yml.")
 }) {
 
-    val language by stringField("language", "en") {
-        Language.values().firstOrNull { lang -> lang.code == it }
-            ?: throw ConfigException("Language with code $it is not supported.")
-    }
+    private val _language by stringField("language", "en")
+    val language: Language
+        get() {
+            return Language.values().firstOrNull { lang -> lang.code == _language }
+                ?: throw ConfigException("Language with code $_language is not supported.")
+        }
 
     val kickBroadcast by booleanField("kickBroadcast", true)
 
