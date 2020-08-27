@@ -1,5 +1,17 @@
 package xyz.ixidi.hype4u.spigot.framework.util.extension
 
-import org.bukkit.ChatColor
+import net.md_5.bungee.api.ChatColor
 
-internal fun String.color() = ChatColor.translateAlternateColorCodes('&', this)
+fun String.color(): String {
+    var format = ChatColor.translateAlternateColorCodes('&', this)
+    //rgb &#kolor
+
+    val c = ChatColor.COLOR_CHAR
+    val regex = Regex("&#([a-f0-9]{6})")
+    format = regex.replace(format) {
+        val hex = it.groupValues[1].toCharArray().joinToString("") { x -> "$c$x"}
+        "${c}x$hex"
+    }
+
+    return format
+}

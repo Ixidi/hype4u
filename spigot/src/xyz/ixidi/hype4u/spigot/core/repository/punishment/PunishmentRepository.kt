@@ -1,4 +1,4 @@
-package xyz.ixidi.hype4u.spigot.core.repository
+package xyz.ixidi.hype4u.spigot.core.repository.punishment
 
 import xyz.ixidi.hype4u.spigot.core.punishment.Punishment
 import xyz.ixidi.hype4u.spigot.core.punishment.PunishmentType
@@ -16,4 +16,5 @@ interface PunishmentRepository {
 
     fun inactivePunishments(vararg type: PunishmentType)
     fun savePunishment(punishment: Punishment)
+
 }

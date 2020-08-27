@@ -3,11 +3,11 @@ package xyz.ixidi.hype4u.spigot.core.group
 interface Group {
 
     val name: String
-    val displayNameFormat: String
-    val chatFormat: String
+    var displayNameFormat: String
+    var chatFormat: String
 
-    fun getAllPermissions(): List<String>
-    fun addPermission(permission: String)
+    fun getAllPermissions(): Map<String, Boolean>
+    fun addPermission(permission: String, allow: Boolean)
     fun removePermission(permission: String)
     fun hasPermission(permission: String): Boolean
 

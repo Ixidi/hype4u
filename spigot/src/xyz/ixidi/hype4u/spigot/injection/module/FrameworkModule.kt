@@ -10,6 +10,9 @@ import xyz.ixidi.hype4u.spigot.framework.command.parser.CommandParser
 import xyz.ixidi.hype4u.spigot.framework.command.parser.CommandParserImpl
 import xyz.ixidi.hype4u.spigot.framework.command.registration.CommandRegistration
 import xyz.ixidi.hype4u.spigot.framework.command.registration.CommandRegistrationImpl
+import xyz.ixidi.hype4u.spigot.framework.gui.GuiListener
+import xyz.ixidi.hype4u.spigot.framework.gui.GuiManager
+import xyz.ixidi.hype4u.spigot.framework.gui.GuiManagerImpl
 import xyz.ixidi.hype4u.spigot.framework.language.TranslationManager
 import xyz.ixidi.hype4u.spigot.framework.language.TranslationManagerImpl
 import xyz.ixidi.hype4u.spigot.framework.message.Messages
@@ -33,5 +36,8 @@ fun frameworkModule(plugin: Plugin) = module {
     single<Messages> { MessagesImpl(get()) }
 
     single<TaskManager> { TaskManagerImpl(get()) }
+    single<GuiManager> { GuiManagerImpl(get()) }
+
+    single { GuiListener(get()) }
 
 }

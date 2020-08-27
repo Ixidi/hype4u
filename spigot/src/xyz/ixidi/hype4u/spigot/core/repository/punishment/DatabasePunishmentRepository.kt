@@ -1,4 +1,4 @@
-package xyz.ixidi.hype4u.spigot.core.repository
+package xyz.ixidi.hype4u.spigot.core.repository.punishment
 
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.and
@@ -20,16 +20,16 @@ class DatabasePunishmentRepository(
     }
 
     override fun getPunishmentsByTarget(target: UUID): List<Punishment> = transaction(database) {
-        PunishmentEntity.find { PunishmentTable.targetUUID eq target }.map { it.map(PunishmentEntityMapper) }
+        PunishmentEntity.find { PunishmentTable.targetUUID eq target.toString() }.map { it.map(PunishmentEntityMapper) }
     }
 
     override fun getActivePunishmentsByTarget(target: UUID): List<Punishment> = transaction(database) {
-        PunishmentEntity.find { PunishmentTable.targetUUID.eq(target) and PunishmentTable.active.eq(true) }
+        PunishmentEntity.find { PunishmentTable.targetUUID.eq(target.toString()) and PunishmentTable.active.eq(true) }
             .map { it.map(PunishmentEntityMapper) }
     }
 
     override fun getPunishmentsByExecutor(executor: UUID): List<Punishment> = transaction(database) {
-        PunishmentEntity.find { PunishmentTable.executorUUID eq executor }.map { it.map(PunishmentEntityMapper) }
+        PunishmentEntity.find { PunishmentTable.executorUUID eq executor.toString() }.map { it.map(PunishmentEntityMapper) }
     }
 
     override fun getPunishmentsByTarget(target: String): List<Punishment> {
@@ -47,7 +47,7 @@ class DatabasePunishmentRepository(
     override fun inactivePunishments(vararg type: PunishmentType) {
         transaction(database) {
             PunishmentEntity.find {
-                PunishmentTable.active.eq(true) and PunishmentTable.type.inList(type.toList())
+                PunishmentTable.active.eq(true) and PunishmentTable.type.inList(type.map { it.typeName })
             }.forEach { it.active = false }
         }
     }
@@ -59,11 +59,11 @@ class DatabasePunishmentRepository(
             }
             PunishmentEntity.new {
                 active = punishment.active
-                type = punishment.type
+                type = punishment.type.typeName
                 target = punishment.target
-                targetUUID = punishment.targetUUID
+                targetUUID = punishment.targetUUID.toString()
                 executor = punishment.executor
-                executorUUID = punishment.executorUUID
+                executorUUID = punishment.executorUUID.toString()
                 date = punishment.date.time
                 reason = punishment.reason
                 expires = punishment.expiresAt?.time

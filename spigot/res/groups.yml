@@ -1,0 +1,13 @@
+groups:
+  player:
+    default: true
+    displayNameFormat: "&7{name}"
+    chatFormat: "{dname} &7» &f{message}"
+    permissions:
+      test: false
+  admin:
+    default: false
+    displayNameFormat: "&#ad0000&lADMIN &#ff0000{name}"
+    chatFormat: "{dname} &8» &7{message}"
+    permissions:
+      test: false

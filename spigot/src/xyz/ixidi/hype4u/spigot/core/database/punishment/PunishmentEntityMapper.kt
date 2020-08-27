@@ -8,11 +8,11 @@ object PunishmentEntityMapper : Mapper<PunishmentEntity, Punishment> {
 
     override fun PunishmentEntity.map(): Punishment = Punishment(
         active = active,
-        type = type,
+        type = PunishmentType.values().firstOrNull { it.typeName == type } ?: PunishmentType.UNKNOWN,
         target = target,
-        targetUUID = targetUUID,
+        targetUUID = UUID.fromString(targetUUID),
         executor = executor,
-        executorUUID = executorUUID,
+        executorUUID = UUID.fromString(executorUUID),
         date = Date(date),
         reason = reason,
         expiresAt = expires?.let { Date(it) }

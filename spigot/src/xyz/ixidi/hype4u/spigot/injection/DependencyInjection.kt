@@ -16,7 +16,8 @@ internal object DependencyInjection : KoinComponent {
         configModule,
         commandModule,
         databaseModule,
-        coreModule
+        coreModule,
+        listenerModule
     )
 
     fun start(plugin: JavaPlugin) {

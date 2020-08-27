@@ -6,13 +6,11 @@ import java.util.*
 
 interface PunishmentManager {
 
-    fun getPunishments(): List<Punishment>
-    fun getPunishmentsByTarget(target: UUID): List<Punishment>
-    fun getActivePunishmentsByTarget(target: UUID): List<Punishment>
-    fun getPunishmentsByExecutor(executor: UUID): List<Punishment>
-    fun getPunishmentsByTarget(target: String): List<Punishment>
-    fun getActivePunishmentsByTarget(target: String): List<Punishment>
-    fun getPunishmentsByExecutor(executor: String): List<Punishment>
+    fun getPunishments(target: UUID): List<Punishment>
+    fun getActivePunishments(target: UUID): List<Punishment>
+
+    fun load(uuid: UUID)
+    fun save(uuid: UUID)
 
     fun kick(player: Player, executor: CommandSender, reason: String)
     fun permanentBan(uuid: UUID, executor: CommandSender, reason: String)

@@ -8,7 +8,6 @@ import xyz.ixidi.hype4u.spigot.framework.config.field.io.FieldIO
 object GroupDTOFieldIO : FieldIO<GroupDTO> {
 
     override fun ConfigurationSection.load(key: String): GroupDTO? {
-        val name = getString("name") ?: throw ConfigException("name field is missing.")
         val default = getBoolean("default")
         val displayNameFormat = getString("displayNameFormat") ?: throw ConfigException("displayNameFormat field is missing.")
         val chatFormat = getString("chatFormat") ?: throw ConfigException("chatFormat field is missing.")
@@ -19,7 +18,7 @@ object GroupDTOFieldIO : FieldIO<GroupDTO> {
             permissions[it] = section.getBoolean(it)
         }
 
-        return GroupDTO(name, default, displayNameFormat, chatFormat, permissions)
+        return GroupDTO(key, default, displayNameFormat, chatFormat, permissions)
     }
 
     override fun ConfigurationSection.save(key: String, value: GroupDTO) {

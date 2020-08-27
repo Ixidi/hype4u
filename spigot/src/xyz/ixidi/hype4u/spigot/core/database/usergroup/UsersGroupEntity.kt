@@ -1,4 +1,4 @@
-package xyz.ixidi.hype4u.spigot.core.database
+package xyz.ixidi.hype4u.spigot.core.database.usergroup
 
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
@@ -10,6 +10,6 @@ class UsersGroupEntity(id: EntityID<Int>) : IntEntity(id) {
 
     var uuid by UsersGroupsTable.uuid
     var groupName by UsersGroupsTable.groupName
-    var default by UsersGroupsTable.default
+    var primary by UsersGroupsTable.primary
 
 }
