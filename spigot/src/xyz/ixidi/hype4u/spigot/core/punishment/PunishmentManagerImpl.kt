@@ -1,8 +1,11 @@
 package xyz.ixidi.hype4u.spigot.core.punishment
 
+import org.bukkit.Server
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 import xyz.ixidi.hype4u.spigot.core.repository.punishment.PunishmentRepository
+import xyz.ixidi.hype4u.spigot.core.repository.user.UserRepository
+import xyz.ixidi.hype4u.spigot.core.user.UserManager
 import xyz.ixidi.hype4u.spigot.framework.message.Messages
 import xyz.ixidi.hype4u.spigot.misc.Permission
 import xyz.ixidi.hype4u.spigot.misc.TranslatableKey
@@ -12,7 +15,8 @@ import kotlin.collections.HashMap
 
 class PunishmentManagerImpl(
     private val punishmentRepository: PunishmentRepository,
-    private val messages: Messages
+    private val messages: Messages,
+    private val server: Server
 ) : PunishmentManager {
 
     class PlayerBypassPermissionException : Exception()
@@ -81,11 +85,35 @@ class PunishmentManagerImpl(
         player.kickPlayer(r)
     }
 
-    override fun permanentBan(uuid: UUID, executor: CommandSender, reason: String) {
-        TODO("Not yet implemented")
+    override fun permanentBan(uuid: UUID, name: String, executor: CommandSender, reason: String) {
+        val executorUUID = if (executor is Player) executor.uniqueId else UUID.nameUUIDFromBytes(executor.name.toByteArray())
+        val punishment = Punishment(
+            active = true,
+            type = PunishmentType.PERMANENT_BAN,
+            target = name,
+            targetUUID = uuid,
+            executor = executor.name,
+            executorUUID = executorUUID,
+            date = Date(),
+            reason = reason,
+            expiresAt = null
+        )
+
+        punishmentRepository.savePunishment(punishment)
+
+        server.getPlayer(uuid)?.let {
+            val r = if (reason.isNotBlank()) messages.getColoredMessage(
+                TranslatableKey.MESSAGE_COMMAND_BAN_SCREEN_REASON,
+                "reason" to reason,
+                "name" to executor.name
+            ) else messages.getColoredMessage(TranslatableKey.MESSAGE_COMMAND_BAN_SCREEN)
+
+            it.kickPlayer(r)
+        }
+
     }
 
-    override fun temporaryBan(player: Player, executor: CommandSender, reason: String, expiresAt: Date) {
+    override fun temporaryBan(uuid: UUID, executor: CommandSender, reason: String, expiresAt: Date) {
         TODO("Not yet implemented")
     }
 

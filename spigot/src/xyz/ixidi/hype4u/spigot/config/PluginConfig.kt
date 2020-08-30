@@ -19,6 +19,7 @@ class PluginConfig(
         }
 
     val kickBroadcast by booleanField("kickBroadcast", true)
+    val banBroadcast by booleanField("banBroadcast", true)
 
     val mysqlHost by stringField("mysql.host", "localhost")
     val mysqlUser by stringField("mysql.user", "root")

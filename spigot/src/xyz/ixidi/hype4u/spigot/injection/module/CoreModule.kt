@@ -30,7 +30,7 @@ val coreModule = module {
         }
     }
 
-    single<PunishmentManager> { PunishmentManagerImpl(get(), get()) }
+    single<PunishmentManager> { PunishmentManagerImpl(get(), get(), get()) }
     single<UserManager> { UserManagerImpl() }
 
 }

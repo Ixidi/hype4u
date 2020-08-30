@@ -17,4 +17,7 @@ class UserImpl(
     override val activePunishments: List<Punishment>
         get() = punishmentManager.getActivePunishments(uuid)
 
+    override fun hasPermission(permission: String): Boolean {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }

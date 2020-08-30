@@ -39,4 +39,25 @@ class PunishmentCommands(
         if (config.kickBroadcast) server.onlinePlayers.forEach { it.message(TranslatableKey.MESSAGE_COMMAND_KICK_BROADCAST, "target" to target.name) }
     }
 
+    @Command(
+        name = "ban",
+        desc = "Blokuje dostęp do serwera.",
+        permission = Permission.COMMAND_BAN
+    )
+    private fun ban(
+        @Sender sender: CommandSender,
+        @Arg("cel", "Gracz, który ma zostać zablokowany.") target: Player,
+        @Arg("powód", "Powód blokady.", " ") @GreedyString reason: String
+    ) {
+        try {
+            punishmentManager.permanentBan(target.uniqueId, target.name, sender, reason)
+        } catch (ex: PunishmentManagerImpl.PlayerBypassPermissionException) {
+            sender.message(TranslatableKey.MESSAGE_COMMAND_BAN_BYPASS)
+            return
+        }
+
+        if (config.banBroadcast) server.onlinePlayers.forEach { it.message(TranslatableKey.MESSAGE_COMMAND_BAN_BROADCAST, "target" to target.name) }
+    }
+
+
 }

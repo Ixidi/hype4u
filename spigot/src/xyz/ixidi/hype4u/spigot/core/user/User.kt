@@ -11,4 +11,5 @@ interface User {
     val userGroups: UserGroups
     val activePunishments: List<Punishment>
 
+    fun hasPermission(permission: String): Boolean
 }

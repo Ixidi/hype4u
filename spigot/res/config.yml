@@ -1,5 +1,6 @@
 language: "pl"
 kickBroadcast: true
+banBroadcast: true
 mysql:
   host: "localhost"
   user: "root"

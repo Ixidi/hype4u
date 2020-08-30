@@ -13,8 +13,8 @@ interface PunishmentManager {
     fun save(uuid: UUID)
 
     fun kick(player: Player, executor: CommandSender, reason: String)
-    fun permanentBan(uuid: UUID, executor: CommandSender, reason: String)
-    fun temporaryBan(player: Player, executor: CommandSender, reason: String, expiresAt: Date)
+    fun permanentBan(uuid: UUID, name: String, executor: CommandSender, reason: String)
+    fun temporaryBan(uuid: UUID, executor: CommandSender, reason: String, expiresAt: Date)
     fun revokeBan(uuid: UUID, executor: CommandSender, reason: String)
 
 }
