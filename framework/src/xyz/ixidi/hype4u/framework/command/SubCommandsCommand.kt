@@ -1,9 +1,8 @@
 package xyz.ixidi.hype4u.framework.command
 
 import org.bukkit.command.CommandSender
-import xyz.ixidi.hype4u.framework.language.TranslatableKey
 import xyz.ixidi.hype4u.framework.util.extension.message
-import xyz.ixidi.hype4u.misc.FrameworkTranslatableKey
+import xyz.ixidi.hype4u.framework.FrameworkTranslatableKey
 
 internal class SubCommandsCommand(
     override val name: String,

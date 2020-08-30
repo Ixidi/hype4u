@@ -1,12 +1,10 @@
-package xyz.ixidi.hype4u
+package xyz.ixidi.hype4u.framework
 
 import org.bukkit.plugin.java.JavaPlugin
 import org.koin.core.get
-import xyz.ixidi.hype4u.framework.Listeners
 import xyz.ixidi.hype4u.framework.message.Messages
-import xyz.ixidi.hype4u.injection.FrameworkDependencyInjection
-import xyz.ixidi.hype4u.injection.frameworkModule
-import xyz.ixidi.hype4u.misc.FrameworkTranslatableKey
+import xyz.ixidi.hype4u.framework.injection.FrameworkDependencyInjection
+import xyz.ixidi.hype4u.framework.injection.frameworkModule
 
 internal class FrameworkPlugin : JavaPlugin() {
 

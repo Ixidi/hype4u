@@ -7,6 +7,7 @@ object HypeFramework {
 
     private val apiMap = HashMap<KClass<*>, PluginApi>()
 
+    //TODO
     internal fun <T : PluginApi> registerApi(clazz: KClass<out T>, api: T) {
         apiMap[clazz] = api
     }

@@ -6,8 +6,6 @@ import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.koin.core.get
 import org.koin.dsl.module
-import xyz.ixidi.hype4u.framework.Commands
-import xyz.ixidi.hype4u.framework.Listeners
 import xyz.ixidi.hype4u.framework.command.argument.ArgumentParsers
 import xyz.ixidi.hype4u.framework.command.parser.CommandParser
 import xyz.ixidi.hype4u.framework.command.registration.CommandRegistration
@@ -17,7 +15,7 @@ import xyz.ixidi.hype4u.framework.message.Messages
 import xyz.ixidi.hype4u.framework.repository.PluginRepository
 import xyz.ixidi.hype4u.framework.repository.PluginRepositoryImpl
 import xyz.ixidi.hype4u.framework.task.TaskManager
-import xyz.ixidi.hype4u.injection.FrameworkDependencyInjection
+import xyz.ixidi.hype4u.framework.injection.FrameworkDependencyInjection
 
 internal fun externalPluginModule(plugin: Plugin, pluginInfo: PluginInfo) = module {
 

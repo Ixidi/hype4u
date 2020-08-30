@@ -1,7 +1,7 @@
 package xyz.ixidi.hype4u.framework.language
 
 import org.bukkit.configuration.file.YamlConfiguration
-import xyz.ixidi.hype4u.config.PluginConfig
+import xyz.ixidi.hype4u.framework.config.PluginConfig
 import xyz.ixidi.hype4u.framework.repository.PluginRepository
 
 internal class TranslationManagerImpl(

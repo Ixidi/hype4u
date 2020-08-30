@@ -3,9 +3,8 @@ package xyz.ixidi.hype4u.framework.command.argument.parser
 import org.bukkit.Server
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
-import xyz.ixidi.hype4u.framework.language.TranslatableKey
 import xyz.ixidi.hype4u.framework.util.extension.message
-import xyz.ixidi.hype4u.misc.FrameworkTranslatableKey
+import xyz.ixidi.hype4u.framework.FrameworkTranslatableKey
 import kotlin.reflect.KClass
 
 internal class DefaultPlayerParser(

@@ -1,11 +1,11 @@
-package xyz.ixidi.hype4u.injection
+package xyz.ixidi.hype4u.framework.injection
 
 import com.mysql.cj.jdbc.MysqlDataSource
 import org.bukkit.plugin.Plugin
 import org.jetbrains.exposed.sql.Database
 import org.koin.dsl.module
 import xyz.ixidi.hype4u.framework.repository.PluginRepository
-import xyz.ixidi.hype4u.config.PluginConfig
+import xyz.ixidi.hype4u.framework.config.PluginConfig
 import xyz.ixidi.hype4u.framework.Listeners
 import xyz.ixidi.hype4u.framework.command.argument.ArgumentParsers
 import xyz.ixidi.hype4u.framework.command.argument.ArgumentParsersImpl
@@ -23,7 +23,7 @@ import xyz.ixidi.hype4u.framework.message.MessagesImpl
 import xyz.ixidi.hype4u.framework.repository.PluginRepositoryImpl
 import xyz.ixidi.hype4u.framework.task.TaskManager
 import xyz.ixidi.hype4u.framework.task.TaskManagerImpl
-import xyz.ixidi.hype4u.misc.FrameworkTranslatableKey
+import xyz.ixidi.hype4u.framework.FrameworkTranslatableKey
 
 internal fun frameworkModule(plugin: Plugin) = module {
 

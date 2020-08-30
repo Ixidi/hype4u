@@ -1,4 +1,4 @@
-package xyz.ixidi.hype4u.misc
+package xyz.ixidi.hype4u.framework
 
 import xyz.ixidi.hype4u.framework.language.TranslatableKey
 

@@ -1,10 +1,9 @@
 package xyz.ixidi.hype4u.framework.command.registration
 
 import org.bukkit.command.CommandSender
-import xyz.ixidi.hype4u.framework.language.TranslatableKey
 import xyz.ixidi.hype4u.framework.command.Command
 import xyz.ixidi.hype4u.framework.util.extension.message
-import xyz.ixidi.hype4u.misc.FrameworkTranslatableKey
+import xyz.ixidi.hype4u.framework.FrameworkTranslatableKey
 
 private typealias BukkitCommand = org.bukkit.command.Command
 

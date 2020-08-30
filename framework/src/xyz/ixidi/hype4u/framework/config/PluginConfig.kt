@@ -1,8 +1,6 @@
-package xyz.ixidi.hype4u.config
+package xyz.ixidi.hype4u.framework.config
 
 import xyz.ixidi.hype4u.framework.repository.PluginRepository
-import xyz.ixidi.hype4u.framework.config.AbstractConfiguration
-import xyz.ixidi.hype4u.framework.config.ConfigException
 import xyz.ixidi.hype4u.framework.language.Language
 
 internal class PluginConfig(

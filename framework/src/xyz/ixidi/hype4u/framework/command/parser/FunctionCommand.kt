@@ -1,13 +1,12 @@
 package xyz.ixidi.hype4u.framework.command.parser
 
 import org.bukkit.command.CommandSender
-import xyz.ixidi.hype4u.framework.language.TranslatableKey
 import xyz.ixidi.hype4u.framework.command.Command
 import xyz.ixidi.hype4u.framework.command.parameter.ArgumentFunctionParameter
 import xyz.ixidi.hype4u.framework.command.parameter.CommandSenderFunctionParameter
 import xyz.ixidi.hype4u.framework.command.parameter.FunctionParameter
 import xyz.ixidi.hype4u.framework.util.extension.message
-import xyz.ixidi.hype4u.misc.FrameworkTranslatableKey
+import xyz.ixidi.hype4u.framework.FrameworkTranslatableKey
 import java.lang.StringBuilder
 import kotlin.reflect.KFunction
 
