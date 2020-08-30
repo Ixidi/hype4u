@@ -4,8 +4,6 @@ import org.bukkit.Server
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 import xyz.ixidi.hype4u.spigot.core.repository.punishment.PunishmentRepository
-import xyz.ixidi.hype4u.spigot.core.repository.user.UserRepository
-import xyz.ixidi.hype4u.spigot.core.user.UserManager
 import xyz.ixidi.hype4u.spigot.framework.message.Messages
 import xyz.ixidi.hype4u.spigot.misc.Permission
 import xyz.ixidi.hype4u.spigot.misc.TranslatableKey

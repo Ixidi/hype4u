@@ -12,8 +12,8 @@ import xyz.ixidi.hype4u.spigot.core.repository.punishment.DatabasePunishmentRepo
 import xyz.ixidi.hype4u.spigot.core.repository.punishment.PunishmentRepository
 import xyz.ixidi.hype4u.spigot.core.repository.usegroups.DatabaseUserGroupsRepository
 import xyz.ixidi.hype4u.spigot.core.repository.usegroups.UserGroupsRepository
-import xyz.ixidi.hype4u.spigot.core.repository.user.DatabaseUserRepository
-import xyz.ixidi.hype4u.spigot.core.repository.user.UserRepository
+import xyz.ixidi.hype4u.spigot.core.repository.userinfo.DatabaseUserRepository
+import xyz.ixidi.hype4u.spigot.core.repository.userinfo.UserRepository
 import xyz.ixidi.hype4u.spigot.core.user.UserManager
 import xyz.ixidi.hype4u.spigot.core.user.UserManagerImpl
 

@@ -1,4 +1,4 @@
-package xyz.ixidi.hype4u.spigot.core.repository.user
+package xyz.ixidi.hype4u.spigot.core.repository.userinfo
 
 import xyz.ixidi.hype4u.spigot.core.user.User
 import java.util.*

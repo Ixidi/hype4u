@@ -1,4 +1,4 @@
-package xyz.ixidi.hype4u.spigot.core.repository.user
+package xyz.ixidi.hype4u.spigot.core.repository.userinfo
 
 import org.bukkit.Server
 import org.jetbrains.exposed.sql.Database
@@ -25,7 +25,7 @@ class DatabaseUserRepository(
         val player = server.getPlayer(uuid)
 
         punishmentManager.load(uuid)
-        val user = UserImpl(uuid, player?.name ?: entity?.name ?: "-", punishmentManager, groupManager)
+        val user = UserImpl(uuid, player?.name ?: entity?.name ?: "-", groupManager)
         userGroupsRepository.getUserGroups(uuid).run {
             val userGroups = user.userGroups
             userGroups.setPrimaryGroup(groupManager.getGroupByName(primary) ?: groupManager.getDefaultGroup())
