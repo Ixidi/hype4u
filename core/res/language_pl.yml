@@ -1,0 +1,14 @@
+message:
+  command:
+    kick:
+      bypass: "&cNie możesz wyrzucić tego gracza."
+      screen: "&cZostałeś wyrzucony z serwera."
+      screenReason: "&cZostałeś wyrzucony z serwera. Powód: &7{reason}&c."
+      broadcast: "&cGracz &7{target} &czostał wyrzocony z serwera."
+    ban:
+      bypass: "&cNie możesz zbanować tego gracza."
+      screen: "&cZostałeś permamentnie zbanowany przez &7{name}&c."
+      screenReason: |-
+        &cZostałeś permamentnie zbanowany przez &7{name}&c.
+        &cPowód: &7{reason}&c.
+      broadcast: "&cGracz &7{target} &czostał zbanowany."

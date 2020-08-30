@@ -1,0 +1,9 @@
+name: HypeCore
+author: Ixidi
+version: 1.0
+loadbefore:
+  - HypeFramework
+depend:
+  - HypeFramework
+main: xyz.ixidi.hype4u.core.CorePlugin
+api-version: 1.16

@@ -1,0 +1,10 @@
+message:
+  playerOffline: "&cGracza &7{name} &cnie ma na serwerze."
+  reload: "&c&kxxx &6Serwer został przeładowany... &c&kxxx"
+  command:
+    noPermission: "&cNie masz uprawnień do wykonania tej komendy."
+    senderLevel: "&cNie możesz wykonać tej komendy z tego poziomu."
+    missingParameter: |-
+      &cBłąd przy użyciu komendy {error}
+      &cBrakuje parametru &7{name} ({desc})&c.
+    unknownError: "&cWystąpił nieoczekiwany błąd podczas wykonywania komendy. {error}"
