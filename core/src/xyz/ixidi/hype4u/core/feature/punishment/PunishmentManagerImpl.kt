@@ -1,4 +1,4 @@
-package xyz.ixidi.hype4u.core.punishment
+package xyz.ixidi.hype4u.core.feature.punishment
 
 import org.bukkit.Server
 import org.bukkit.command.CommandSender
@@ -7,6 +7,8 @@ import xyz.ixidi.hype4u.core.misc.CoreTranslatableKey
 import xyz.ixidi.hype4u.core.repository.punishment.PunishmentRepository
 import xyz.ixidi.hype4u.framework.message.Messages
 import xyz.ixidi.hype4u.core.misc.Permission
+import xyz.ixidi.hype4u.framework.task.TaskManager
+import xyz.ixidi.hype4u.framework.util.DateFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
@@ -14,7 +16,8 @@ import kotlin.collections.HashMap
 class PunishmentManagerImpl(
     private val punishmentRepository: PunishmentRepository,
     private val messages: Messages,
-    private val server: Server
+    private val server: Server,
+    private val taskManager: TaskManager
 ) : PunishmentManager {
 
     class PlayerBypassPermissionException : Exception()
@@ -97,26 +100,72 @@ class PunishmentManagerImpl(
             expiresAt = null
         )
 
-        punishmentRepository.savePunishment(punishment)
+        taskManager.runAsyncTask {
+            punishmentRepository.savePunishment(punishment)
+        }
 
         server.getPlayer(uuid)?.let {
             val r = if (reason.isNotBlank()) messages.getColoredMessage(
                 CoreTranslatableKey.MESSAGE_COMMAND_BAN_SCREEN_REASON,
                 "reason" to reason,
                 "name" to executor.name
-            ) else messages.getColoredMessage(CoreTranslatableKey.MESSAGE_COMMAND_BAN_SCREEN)
+            ) else messages.getColoredMessage(CoreTranslatableKey.MESSAGE_COMMAND_BAN_SCREEN, "name" to executor.name)
 
             it.kickPlayer(r)
         }
 
     }
 
-    override fun temporaryBan(uuid: UUID, executor: CommandSender, reason: String, expiresAt: Date) {
-        TODO("Not yet implemented")
+    override fun temporaryBan(uuid: UUID, name: String, executor: CommandSender, reason: String, expiresAt: Date) {
+        val executorUUID = if (executor is Player) executor.uniqueId else UUID.nameUUIDFromBytes(executor.name.toByteArray())
+        val punishment = Punishment(
+            active = true,
+            type = PunishmentType.TEMPORARY_BAN,
+            target = name,
+            targetUUID = uuid,
+            executor = executor.name,
+            executorUUID = executorUUID,
+            date = Date(),
+            reason = reason,
+            expiresAt = expiresAt
+        )
+
+        taskManager.runAsyncTask {
+            punishmentRepository.savePunishment(punishment)
+        }
+
+        server.getPlayer(uuid)?.let {
+            val r = if (reason.isNotBlank()) messages.getColoredMessage(
+                CoreTranslatableKey.MESSAGE_COMMAND_TEMPBAN_SCREEN_REASON,
+                "reason" to reason,
+                "expires" to DateFormatter.formatDate(expiresAt),
+                "name" to executor.name
+            ) else messages.getColoredMessage(CoreTranslatableKey.MESSAGE_COMMAND_TEMPBAN_SCREEN, "name" to executor.name)
+
+            it.kickPlayer(r)
+        }
+
     }
 
-    override fun revokeBan(uuid: UUID, executor: CommandSender, reason: String) {
-        TODO("Not yet implemented")
+    override fun unban(uuid: UUID, name: String, executor: CommandSender, reason: String) {
+        punishmentRepository.inactivePunishments(uuid, PunishmentType.PERMANENT_BAN, PunishmentType.TEMPORARY_BAN)
+
+        val executorUUID = if (executor is Player) executor.uniqueId else UUID.nameUUIDFromBytes(executor.name.toByteArray())
+        val punishment = Punishment(
+            active = true,
+            type = PunishmentType.UNBAN,
+            target = name,
+            targetUUID = uuid,
+            executor = executor.name,
+            executorUUID = executorUUID,
+            date = Date(),
+            reason = reason,
+            expiresAt = null
+        )
+
+        taskManager.runAsyncTask {
+            punishmentRepository.savePunishment(punishment)
+        }
     }
 
 

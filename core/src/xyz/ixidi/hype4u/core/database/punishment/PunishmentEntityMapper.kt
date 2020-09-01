@@ -1,6 +1,6 @@
 package xyz.ixidi.hype4u.core.database.punishment
 
-import xyz.ixidi.hype4u.core.punishment.*
+import xyz.ixidi.hype4u.core.feature.punishment.*
 import xyz.ixidi.hype4u.framework.util.Mapper
 import java.util.*
 

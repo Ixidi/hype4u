@@ -19,7 +19,6 @@ internal class TranslationManagerImpl(
         val file = pluginRepository.getLocalResourceFile("language_${pluginConfig.language.code}.yml") ?: throw LanguageFileNotFoundException(pluginConfig.language)
         val config = YamlConfiguration.loadConfiguration(file)
 
-        translations.clear()
         keys.forEach {
             val string = config.getString(it.key) ?: throw TranslatableKeyNotImplementedException(pluginConfig.language, it)
 

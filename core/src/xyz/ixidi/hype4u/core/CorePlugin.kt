@@ -1,8 +1,5 @@
 package xyz.ixidi.hype4u.core
 
-import org.bukkit.event.player.PlayerJoinEvent
-import org.bukkit.event.player.PlayerQuitEvent
-import org.koin.core.KoinComponent
 import org.koin.core.module.Module
 import xyz.ixidi.hype4u.core.api.CoreApi
 import xyz.ixidi.hype4u.core.api.CoreApiImpl

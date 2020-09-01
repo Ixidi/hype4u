@@ -5,8 +5,8 @@ import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.transactions.transaction
 import xyz.ixidi.hype4u.core.database.user.UserEntity
 import xyz.ixidi.hype4u.core.database.user.UserTable
-import xyz.ixidi.hype4u.core.group.GroupManager
-import xyz.ixidi.hype4u.core.punishment.PunishmentManager
+import xyz.ixidi.hype4u.core.feature.group.GroupManager
+import xyz.ixidi.hype4u.core.feature.punishment.PunishmentManager
 import xyz.ixidi.hype4u.core.repository.usegroups.UserGroupsRepository
 import xyz.ixidi.hype4u.core.user.User
 import xyz.ixidi.hype4u.core.user.UserImpl
@@ -14,10 +14,10 @@ import java.util.*
 
 class DatabaseUserRepository(
     private val database: Database,
-    private val server: Server,
     private val punishmentManager: PunishmentManager,
     private val userGroupsRepository: UserGroupsRepository,
-    private val groupManager: GroupManager
+    private val groupManager: GroupManager,
+    private val server: Server
 ) : UserRepository {
 
     override fun loadUser(uuid: UUID): User = transaction(database) {

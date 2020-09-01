@@ -1,4 +1,4 @@
-package xyz.ixidi.hype4u.core.group.permission
+package xyz.ixidi.hype4u.core.feature.group.permission
 
 import org.bukkit.entity.Player
 import org.bukkit.permissions.PermissionAttachment

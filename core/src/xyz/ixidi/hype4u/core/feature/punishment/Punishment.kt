@@ -1,4 +1,4 @@
-package xyz.ixidi.hype4u.core.punishment
+package xyz.ixidi.hype4u.core.feature.punishment
 
 import java.util.*
 

@@ -76,7 +76,6 @@ internal class CommandParserImpl(
                         name = name,
                         description = desc,
                         aliases = aliases.toList(),
-                        permission = permission,
                         subCommands = commandList
                     )
                 )

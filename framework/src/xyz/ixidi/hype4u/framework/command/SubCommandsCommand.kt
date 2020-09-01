@@ -8,20 +8,39 @@ internal class SubCommandsCommand(
     override val name: String,
     override val description: String,
     override val aliases: List<String>,
-    override val permission: String,
     private val subCommands: List<Command>
 ) : Command {
+
+    override val permission: String = ""
 
     override fun canExecute(commandSender: CommandSender): Boolean = commandSender.hasPermission(permission)
 
     override fun execute(commandSender: CommandSender, args: List<String>) {
+        if (subCommands.none { it.canExecute(commandSender) }) {
+            commandSender.message(FrameworkTranslatableKey.MESSAGE_COMMAND_NO_PERMISSION)
+            return
+        }
+
         if (args.isEmpty()) {
-            commandSender.sendMessage("help") //TODO
+            val available = subCommands.filter { it.canExecute(commandSender) }
+            commandSender.message(FrameworkTranslatableKey.MESSAGE_COMMAND_HELP_HEADER)
+            available.forEach {
+                commandSender.message(
+                    FrameworkTranslatableKey.MESSAGE_COMMAND_HELP_ENTRY,
+                    "command" to "/$name ${it.name}",
+                    "desc" to it.description
+                )
+            }
             return
         }
 
         val command = subCommands.firstOrNull { it.name.equals(args[0], true) && it.canExecute(commandSender) }
         if (command == null) {
+            commandSender.message(FrameworkTranslatableKey.MESSAGE_COMMAND_SUBCOMMAND_NOT_EXIST, "command" to "/$name")
+            return
+        }
+
+        if (!command.canExecute(commandSender)) {
             commandSender.message(FrameworkTranslatableKey.MESSAGE_COMMAND_NO_PERMISSION)
             return
         }
@@ -31,6 +50,13 @@ internal class SubCommandsCommand(
     }
 
     override fun tabComplete(commandSender: CommandSender, args: List<String>): List<String> =
-        subCommands.filter { it.name.startsWith(args.last(), true) && it.canExecute(commandSender) }.map { it.name }
+        subCommands.filter {
+            (it.name.startsWith(args.last(), true) || it.aliases.any { s ->
+                s.startsWith(
+                    args.last(),
+                    true
+                )
+            }) && it.canExecute(commandSender)
+        }.map { it.name }
 
 }

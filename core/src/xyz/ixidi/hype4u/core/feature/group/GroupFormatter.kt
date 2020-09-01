@@ -1,4 +1,4 @@
-package xyz.ixidi.hype4u.core.group
+package xyz.ixidi.hype4u.core.feature.group
 
 import org.bukkit.entity.Player
 import xyz.ixidi.hype4u.core.user.User

@@ -1,10 +1,17 @@
 message:
+  unknownTimeFormat: "&cCzas należy podać w formacie &7<liczba><jednostka czasu>...&c."
+  unknownTimeUnit: "&cNieznana jednostka czasu &7{unit}&c."
   playerOffline: "&cGracza &7{name} &cnie ma na serwerze."
   reload: "&c&kxxx &6Serwer został przeładowany... &c&kxxx"
+  subCommandNotExist: "&cTaka subkomenda nie istnieje, lista dostępnych subkomend pod &7{command}&c."
   command:
+    subCommandNotExist: "&cSubkomenda nie istnieje, lista dostępnych pod &7{command}&c."
     noPermission: "&cNie masz uprawnień do wykonania tej komendy."
     senderLevel: "&cNie możesz wykonać tej komendy z tego poziomu."
     missingParameter: |-
       &cBłąd przy użyciu komendy {error}
       &cBrakuje parametru &7{name} ({desc})&c.
     unknownError: "&cWystąpił nieoczekiwany błąd podczas wykonywania komendy. {error}"
+    help:
+      header: "&6&lDostępne subkomendy:"
+      entry: "&8{command} &f{desc}"

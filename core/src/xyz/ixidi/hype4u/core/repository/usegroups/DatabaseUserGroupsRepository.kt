@@ -4,7 +4,7 @@ import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.transactions.transaction
 import xyz.ixidi.hype4u.core.database.usergroup.UsersGroupEntity
 import xyz.ixidi.hype4u.core.database.usergroup.UsersGroupsTable
-import xyz.ixidi.hype4u.core.group.GroupManager
+import xyz.ixidi.hype4u.core.feature.group.GroupManager
 import java.util.*
 import java.util.logging.Logger
 import kotlin.collections.ArrayList

@@ -1,10 +1,14 @@
 package xyz.ixidi.hype4u.framework.command.argument
 
+import jdk.nashorn.internal.parser.DateParser
 import org.bukkit.Server
 import org.bukkit.entity.Player
 import xyz.ixidi.hype4u.framework.command.argument.parser.ArgumentParser
+import xyz.ixidi.hype4u.framework.command.argument.parser.DefaultDateParser
 import xyz.ixidi.hype4u.framework.command.argument.parser.DefaultPlayerParser
 import xyz.ixidi.hype4u.framework.command.argument.parser.DefaultStringParser
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.reflect.KClass
 import kotlin.reflect.full.isSubclassOf
 
@@ -23,6 +27,7 @@ internal class ArgumentParsersImpl(
     init {
         default(String::class, DefaultStringParser)
         default(Player::class, DefaultPlayerParser(server))
+        default(Date::class, DefaultDateParser)
     }
 
     override fun <T : Any> availableParsers(valueClass: KClass<T>): List<ArgumentParser<T>> =

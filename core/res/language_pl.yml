@@ -1,14 +1,35 @@
 message:
+  playerNeverPlayed: "&cGracz &7{name} &cnigdy nie grał na serwerze."
   command:
+    broadcast: "&8&lH4U &r{message}"
+    unban:
+      unbanned: "&aOdbanowana gracza &7{target}&a."
+      notBanned: "&cGracz &7{target} &cnie jest zbanowany."
     kick:
       bypass: "&cNie możesz wyrzucić tego gracza."
       screen: "&cZostałeś wyrzucony z serwera."
       screenReason: "&cZostałeś wyrzucony z serwera. Powód: &7{reason}&c."
       broadcast: "&cGracz &7{target} &czostał wyrzocony z serwera."
     ban:
+      banned: "&aZbanowano gracza &7{target}&a."
       bypass: "&cNie możesz zbanować tego gracza."
       screen: "&cZostałeś permamentnie zbanowany przez &7{name}&c."
       screenReason: |-
         &cZostałeś permamentnie zbanowany przez &7{name}&c.
         &cPowód: &7{reason}&c.
       broadcast: "&cGracz &7{target} &czostał zbanowany."
+    tempban:
+      banned: "&aZbanowana gracza &7{target} &ado &7{expires}&a."
+      bypass: "&cNie możesz zbanować tego gracza."
+      screen: "&cZostałeś zbanowany do &7{expires} &cprzez &7{name}&c."
+      screenReason: |-
+        &cZostałeś zbanowany do &7{expires} &cprzez &7{name}&c.
+        &cPowód: &7{reason}&c.
+      broadcast: "&cGracz &7{target} &czostał czasowo zbanowany."
+    chat:
+      enabledBroadcast: "&aChat został włączony."
+      disabledBroadcast: "&cChat został wyłączony."
+      clearedBroadcast: "&eChat został wyczyszczony."
+      alreadyEnabled: "&cChat jest włączony."
+      alreadyDisabled: "&cChat nie jest włączony."
+      disabled: "&cChat jest obecnie wyłączony, nie możesz wysyłać wiadomości."

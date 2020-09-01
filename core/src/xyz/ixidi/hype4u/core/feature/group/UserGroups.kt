@@ -1,4 +1,4 @@
-package xyz.ixidi.hype4u.core.group
+package xyz.ixidi.hype4u.core.feature.group
 
 import java.util.*
 import kotlin.collections.ArrayList

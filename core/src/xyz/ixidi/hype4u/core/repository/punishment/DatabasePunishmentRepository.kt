@@ -3,8 +3,8 @@ package xyz.ixidi.hype4u.core.repository.punishment
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.and
 import org.jetbrains.exposed.sql.transactions.transaction
-import xyz.ixidi.hype4u.core.punishment.Punishment
-import xyz.ixidi.hype4u.core.punishment.PunishmentType
+import xyz.ixidi.hype4u.core.feature.punishment.Punishment
+import xyz.ixidi.hype4u.core.feature.punishment.PunishmentType
 import xyz.ixidi.hype4u.core.database.punishment.PunishmentEntity
 import xyz.ixidi.hype4u.core.database.punishment.PunishmentEntityMapper
 import xyz.ixidi.hype4u.core.database.punishment.PunishmentTable
@@ -32,22 +32,24 @@ class DatabasePunishmentRepository(
         PunishmentEntity.find { PunishmentTable.executorUUID eq executor.toString() }.map { it.map(PunishmentEntityMapper) }
     }
 
-    override fun getPunishmentsByTarget(target: String): List<Punishment> {
-        TODO("Not yet implemented")
+    override fun getPunishmentsByTarget(target: String): List<Punishment> = transaction(database) {
+        PunishmentEntity.find { PunishmentTable.target eq target }.map { it.map(PunishmentEntityMapper) }
     }
 
-    override fun getActivePunishmentsByTarget(target: String): List<Punishment> {
-        TODO("Not yet implemented")
+    override fun getActivePunishmentsByTarget(target: String): List<Punishment> = transaction(database) {
+        PunishmentEntity.find { PunishmentTable.target.eq(target) and PunishmentTable.active.eq(true) }
+            .map { it.map(PunishmentEntityMapper) }
     }
 
-    override fun getPunishmentsByExecutor(executor: String): List<Punishment> {
-        TODO("Not yet implemented")
+    override fun getPunishmentsByExecutor(executor: String): List<Punishment> = transaction(database) {
+        PunishmentEntity.find { PunishmentTable.executor.eq(executor) }
+            .map { it.map(PunishmentEntityMapper) }
     }
 
-    override fun inactivePunishments(vararg type: PunishmentType) {
+    override fun inactivePunishments(uuid: UUID, vararg type: PunishmentType) {
         transaction(database) {
             PunishmentEntity.find {
-                PunishmentTable.active.eq(true) and PunishmentTable.type.inList(type.map { it.typeName })
+                PunishmentTable.targetUUID.eq(uuid.toString()) and PunishmentTable.active.eq(true) and PunishmentTable.type.inList(type.map { it.typeName })
             }.forEach { it.active = false }
         }
     }
@@ -55,7 +57,7 @@ class DatabasePunishmentRepository(
     override fun savePunishment(punishment: Punishment) {
         transaction(database) {
             if (punishment.type == PunishmentType.PERMANENT_BAN && punishment.type == PunishmentType.TEMPORARY_BAN) {
-                inactivePunishments(PunishmentType.PERMANENT_BAN, PunishmentType.TEMPORARY_BAN)
+                inactivePunishments(punishment.targetUUID, PunishmentType.PERMANENT_BAN, PunishmentType.TEMPORARY_BAN)
             }
             PunishmentEntity.new {
                 active = punishment.active

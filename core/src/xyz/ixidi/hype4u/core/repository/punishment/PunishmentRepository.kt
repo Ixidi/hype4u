@@ -1,7 +1,7 @@
 package xyz.ixidi.hype4u.core.repository.punishment
 
-import xyz.ixidi.hype4u.core.punishment.Punishment
-import xyz.ixidi.hype4u.core.punishment.PunishmentType
+import xyz.ixidi.hype4u.core.feature.punishment.Punishment
+import xyz.ixidi.hype4u.core.feature.punishment.PunishmentType
 import java.util.*
 
 interface PunishmentRepository {
@@ -14,7 +14,7 @@ interface PunishmentRepository {
     fun getActivePunishmentsByTarget(target: String): List<Punishment>
     fun getPunishmentsByExecutor(executor: String): List<Punishment>
 
-    fun inactivePunishments(vararg type: PunishmentType)
+    fun inactivePunishments(uuid: UUID, vararg type: PunishmentType)
     fun savePunishment(punishment: Punishment)
 
 }

@@ -1,6 +1,6 @@
 package xyz.ixidi.hype4u.core.user
 
-import xyz.ixidi.hype4u.core.group.UserGroups
+import xyz.ixidi.hype4u.core.feature.group.UserGroups
 import java.util.*
 
 interface User {
